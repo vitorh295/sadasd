@@ -55,8 +55,14 @@ RegisterNetEvent('qb-spawn:client:setupSpawns', function(cData, new, apps)
             local Apartment = nil
             local ApartmentName = nil
             QBCore.Functions.TriggerCallback('qb-spawn:server:GetOwnedApartment', function(result)
-                Apartment = Apartments.Locations[result.type]
-                ApartmentName = result.name
+                --print("GetOwnedApartment Callback Result:", json.encode(result))
+                if result and result.type then
+                    Apartment = Apartments.Locations[result.type]
+                    ApartmentName = result.name
+                    --print("Apartment Coordinates:", json.encode(Apartment.coords.enter))
+                --else
+                    --print("Error: GetOwnedApartment Callback returned invalid data.")
+                end
             end)
             Wait(400)
             SendNUIMessage({
@@ -76,18 +82,18 @@ RegisterNetEvent('qb-spawn:client:setupSpawns', function(cData, new, apps)
     end
 end)
 
-local function SetCam(campos)
-    cam2 = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus1, 300.00,0.00,0.00, 110.00, false, 0)
+function SetCam(campos)
+    cam2 = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus1, 300.00, 0.00, 0.00, 110.00, false, 0)
     PointCamAtCoord(cam2, campos.x, campos.y, campos.z + pointCamCoords)
     SetCamActiveWithInterp(cam2, cam, cam1Time, true, true)
+
     if DoesCamExist(cam) then
         DestroyCam(cam, true)
     end
 
-    cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00,0.00,0.00, 110.00, false, 0)
+    cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", campos.x, campos.y, campos.z + camZPlus2, 300.00, 0.00, 0.00, 110.00, false, 0)
     PointCamAtCoord(cam, campos.x, campos.y, campos.z + pointCamCoords2)
     SetCamActiveWithInterp(cam, cam2, cam2Time, true, true)
-    SetEntityCoords(PlayerPedId(), campos.x, campos.y, campos.z)
 end
 
 RegisterNUICallback('setCam', function(data, cb)
@@ -110,6 +116,7 @@ RegisterNUICallback('setCam', function(data, cb)
     elseif type == "normal" then
         SetCam(QB.Spawns[location].coords)
     elseif type == "appartment" then
+        --print("Chosen Apartment Coordinates:", json.encode(Apartments.Locations[location].coords.enter))
         SetCam(Apartments.Locations[location].coords.enter)
     end
     cb('ok')

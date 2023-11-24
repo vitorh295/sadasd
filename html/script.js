@@ -56,7 +56,7 @@ $(document).on('click', '#IconClassStyle', function(evt){
     var location = $(this).data('location');
     var type = $(this).data('type');
     var label = $(this).data('label');
-    if (type == "appartment2") {
+    if (type == "apartment1") {
         apartNames = $(this).data('apartname')
     }
     $(".TextFoJSCode").html("Select a Location")
@@ -171,7 +171,7 @@ function setupNewLocations(locations, myHouses, Apartment, ApartmentName, Access
     setTimeout(function(){
         if(Access.apartments == true){
             if(Apartment.pos !== undefined){
-                $(parent).append('<i style="top:'+Apartment.pos.top+'%; left:'+Apartment.pos.left+'%;" data-location="'+Apartment.name+'" data-type="appartment2" data-label="'+Apartment.label+'" data-apartname="'+ApartmentName+'" id="IconClassStyle" class="fas fa-building IconClassStyle2"></i>')
+                $(parent).append('<i style="top:'+Apartment.pos.top+'%; left:'+Apartment.pos.left+'%;" data-location="'+Apartment.name+'" data-type="apartment1" data-label="'+Apartment.label+'" data-apartname="'+ApartmentName+'" id="IconClassStyle" class="fas fa-building IconClassStyle2"></i>')
             }
         }
 

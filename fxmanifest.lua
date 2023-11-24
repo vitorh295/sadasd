@@ -7,18 +7,22 @@ version 'V.1'
 
 version '1.0.0'
 
-shared_scripts {
-	'config.lua',
+ui_page 'html/index.html'
+
+client_scripts {
+	'client.lua',
 	'@qb-apartments/config.lua'
 }
 
-client_script 'client.lua'
 server_scripts {
 	'@oxmysql/lib/MySQL.lua',
 	'server.lua'
 }
 
-ui_page 'html/index.html'
+shared_scripts {
+	'config.lua',
+	'@qb-apartments/config.lua'
+}
 
 files {
 	'html/index.html',
@@ -36,4 +40,4 @@ escrow_ignore {
     'LICENSE',
 }
 
-dependency '/assetpacks'server_scripts { '@mysql-async/lib/MySQL.lua' }server_scripts { '@mysql-async/lib/MySQL.lua' }server_scripts { '@mysql-async/lib/MySQL.lua' }server_scripts { '@mysql-async/lib/MySQL.lua' }server_scripts { '@mysql-async/lib/MySQL.lua' }
+dependency '/assetpacks'
