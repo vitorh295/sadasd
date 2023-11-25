@@ -1,3 +1,5 @@
+[![Lint Code Base](https://github.com/vitorh295/sadasd/actions/workflows/super-linter.yml/badge.svg?branch=main)](https://github.com/vitorh295/sadasd/actions/workflows/super-linter.yml)
+
 # add to qb-apartments/config.lua
 
 
